@@ -1,0 +1,17 @@
+.obl {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 500px;
+    height: 500px;
+    background-color: pink;
+    border-style: dashed;  
+    font-weight: bold;
+    color: blue;
+    font-size: 48px;
+    text-align: center;
+}
+
+
+
+

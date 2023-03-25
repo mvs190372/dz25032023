@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Xy from './components/Xy';
+import React, { useEffect, useState } from 'react';
+/*const INITIAL_STATE = '';*/
 
-function App() {
+function App() {  
+
+  const [data, setData] = useState({ x: 0, y: 0 });
+  const [inObl, setInObl]=useState(true);  
+
+  function mouseMoveHandler(event) {
+    setInObl((event.clientX>0) && (event.clientX<500) && (event.clientY>0) && (event.clientY<500));
+    if (inObl) setData({ x: event.clientX, y: event.clientY });    
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousemove", mouseMoveHandler);
+    return () => {
+      document.removeEventListener("mousemove", mouseMoveHandler);
+    };    
+  });
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <Xy data={data}/>      
     </div>
-  );
+  );  
 }
 
 export default App;
